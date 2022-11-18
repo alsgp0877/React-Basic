@@ -1,22 +1,55 @@
-import logo from './logo.svg';
 import './App.css';
-import { render } from '@testing-library/react';
 import { Component } from 'react';
+
+
+class CONT extends Component {
+  render(){
+    return (
+      <article>
+        <h2>HTML</h2>
+        HTML is HyperText Markup Language.
+      </article>
+    );
+  }
+}
+
+class TOC extends Component {
+  render(){
+    return (
+      <nav>
+        <ul>
+            <li><a href="1.html">HTML</a></li>
+            <li><a href="2.html">CSS</a></li>
+            <li><a href="3.html">JS</a></li>
+        </ul>
+      </nav>
+    );
+  }
+}
+
+
+class Subject extends Component {
+  render(){
+    return (
+      <header>
+        <h1>WEB</h1>
+        world wide web!
+      </header>
+
+    );
+  }
+}
+
 
 class App extends Component{
   render(){
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            아 잠온다.
-          </p>
-          
-        </header>
+        <Subject></Subject>
+        <TOC></TOC>
+        <CONT></CONT>
       </div>
     );
   }
 }
-
 export default App;
