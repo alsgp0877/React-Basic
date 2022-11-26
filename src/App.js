@@ -28,11 +28,21 @@ class App extends Component{
       _title=this.state.contents[0].title;
       _desc=this.state.contents[0].desc;
     }
+
+    console.log('render',this);
     return (
       <div className="App">
         {/* <Subject title={this.state.subject.title} sub={this.state.subject.sub}></Subject> */}
         <header>
-        <h1><a href="/" onClick={function(e){alert('HI'); e.preventDefault();}}>{this.state.subject.title}</a></h1>
+        <h1><a href="/" onClick={function(e){
+          console.log('event in',this);
+          e.preventDefault();
+          return;
+          //this.state.mode='welcome';
+           this.setState({
+            mode:'welcome'
+           });
+          }}>{this.state.subject.title}</a></h1>
         {this.state.subject.sub}
         </header>
         <Subject title="REACT" sub="world wide web!"></Subject>
