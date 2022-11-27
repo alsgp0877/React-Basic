@@ -32,19 +32,28 @@ class App extends Component{
     console.log('render',this);
     return (
       <div className="App">
-        {/* <Subject title={this.state.subject.title} sub={this.state.subject.sub}></Subject> */}
-        <header>
+        <Subject 
+          title={this.state.subject.title} 
+          sub={this.state.subject.sub}
+          onChangePage = {function(){
+            //alert('hihihi');
+            this.setState({mode:'welcome'});
+          }.bind(this)}
+        >
+
+        </Subject>
+        {/* <header>
         <h1><a href="/" onClick={function(e){
           console.log('event in',this);
           e.preventDefault();
-          return;
-          //this.state.mode='welcome';
+          //return;
+          //this.state.mode='welcome'; 리액트 입장에서는 해다 코드는 몰래 바꾼 셈
            this.setState({
             mode:'welcome'
            });
-          }}>{this.state.subject.title}</a></h1>
+        }.bind(this)}>{this.state.subject.title}</a></h1>
         {this.state.subject.sub}
-        </header>
+        </header> */}
         <Subject title="REACT" sub="world wide web!"></Subject>
         <TOC data={this.state.contents}></TOC>
         <CONT title={_title} desc={_desc}></CONT>
