@@ -36,11 +36,9 @@ class App extends Component{
           title={this.state.subject.title} 
           sub={this.state.subject.sub}
           onChangePage = {function(){
-            //alert('hihihi');
             this.setState({mode:'welcome'});
           }.bind(this)}
         >
-
         </Subject>
         {/* <header>
         <h1><a href="/" onClick={function(e){
@@ -55,7 +53,11 @@ class App extends Component{
         {this.state.subject.sub}
         </header> */}
         <Subject title="REACT" sub="world wide web!"></Subject>
-        <TOC data={this.state.contents}></TOC>
+        <TOC onChangePage = {function(){
+            this.setState({mode:'read'});
+          }.bind(this)} 
+          data={this.state.contents}>           
+        </TOC>
         <CONT title={_title} desc={_desc}></CONT>
       </div>
     );
