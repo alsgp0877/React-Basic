@@ -9,6 +9,7 @@ class App extends Component{
     super(props);
     this.state={
       mode:'read',
+      selected_content_id:2,
       subject:{title:'Xeb',sub:'Xorld Xide Xeb!'},
       welcome:{title:'Welcome',desc:'Hello, React!!'},
       contents:[
@@ -25,8 +26,16 @@ class App extends Component{
       _title=this.state.welcome.title;
       _desc = this.state.welcome.desc;
     }else if(this.state.mode==='read'){
-      _title=this.state.contents[0].title;
-      _desc=this.state.contents[0].desc;
+      var i=0;
+      while(i<this.state.contents.length){
+        var data = this.state.contents[i];
+        if(data.id === this.state.selected_content_id){//여기도 this.setState({}) 이용해서 값 설정할듯?
+          _title=data.title;
+          _desc=data.desc;
+          break;
+        }
+        i=i+1;
+      }
     }
 
     console.log('render',this);
@@ -53,8 +62,12 @@ class App extends Component{
         {this.state.subject.sub}
         </header> */}
         <Subject title="REACT" sub="world wide web!"></Subject>
-        <TOC onChangePage = {function(){
-            this.setState({mode:'read'});
+        <TOC 
+          onChangePage = {function(id){
+            this.setState({
+              mode:'read',
+              selected_content_id:Number(id)
+            });
           }.bind(this)} 
           data={this.state.contents}>           
         </TOC>
