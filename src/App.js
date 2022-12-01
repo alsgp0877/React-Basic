@@ -22,14 +22,14 @@ class App extends Component{
 
   render(){
     var _title,_desc = null;
-    if(this.state.mode == 'welcome'){
+    if(this.state.mode === 'welcome'){
       _title=this.state.welcome.title;
       _desc = this.state.welcome.desc;
-    }else if(this.state.mode==='read'){
+    }else if(this.state.mode ==='read'){//처음 셋팅값?
       var i=0;
       while(i<this.state.contents.length){
         var data = this.state.contents[i];
-        if(data.id === this.state.selected_content_id){//여기도 this.setState({}) 이용해서 값 설정할듯?
+        if(data.id === this.state.selected_content_id){
           _title=data.title;
           _desc=data.desc;
           break;
@@ -61,7 +61,6 @@ class App extends Component{
         }.bind(this)}>{this.state.subject.title}</a></h1>
         {this.state.subject.sub}
         </header> */}
-        <Subject title="REACT" sub="world wide web!"></Subject>
         <TOC 
           onChangePage = {function(id){
             this.setState({
