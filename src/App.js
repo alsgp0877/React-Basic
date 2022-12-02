@@ -3,6 +3,7 @@ import { Component } from 'react';
 import TOC from './components/TOC';
 import CONT from './components/CONT';
 import Subject from './components/Subject';
+import Control from './components/Control';
 
 class App extends Component{
   constructor(props){
@@ -38,7 +39,7 @@ class App extends Component{
       }
     }
 
-    console.log('render',this);
+    //console.log('render',this);
     return (
       <div className="App">
         <Subject 
@@ -70,6 +71,11 @@ class App extends Component{
           }.bind(this)} 
           data={this.state.contents}>           
         </TOC>
+        <Control onChangeMode={function(_mode){
+          this.setState({
+            mode:_mode
+          });
+        }.bind(this)}></Control>
         <CONT title={_title} desc={_desc}></CONT>
       </div>
     );
