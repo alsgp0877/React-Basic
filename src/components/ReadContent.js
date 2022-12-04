@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
 
-class CONT extends Component {
+class ReadContent extends Component {
   render(){
     return (
       <article>
@@ -13,4 +13,4 @@ class CONT extends Component {
 }
 
 
-export default CONT;
+export default ReadContent;
