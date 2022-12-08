@@ -1,7 +1,13 @@
 import { Component } from 'react';
 
 class TOC extends Component {
+  //TOC 기능하라 필요 없을때 렌딩안하게 하는 방법
+  shouldComponentUpdate(){
+    console.log('====>TOC shouldComponentUpdate');
+    return false;
+  }
   render(){
+    console.log('====>TOC render');
     var lists = [];
     var data = this.props.data;
     var i=0;
