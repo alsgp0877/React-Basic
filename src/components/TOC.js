@@ -2,9 +2,14 @@ import { Component } from 'react';
 
 class TOC extends Component {
   //TOC 기능하라 필요 없을때 렌딩안하게 하는 방법
-  shouldComponentUpdate(){
-    console.log('====>TOC shouldComponentUpdate');
-    return false;
+  shouldComponentUpdate(newProps, newState){
+    console.log('====>TOC shouldComponentUpdate'
+    ,newProps.data//바뀐값을 알 수 있고
+    ,this.props.data//예전 값을 알 수 있다.
+    );
+    if(this.props.data === newProps.data){
+      return false;
+    }
   }
   render(){
     console.log('====>TOC render');
