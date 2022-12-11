@@ -11,7 +11,7 @@ class App extends Component{
     super(props);
     this.max_content_id=3;
     this.state={
-      mode:'read',
+      mode:'welcome',
       selected_content_id:2,
       subject:{title:'Xeb',sub:'Xorld Xide Xeb!'},
       welcome:{title:'Welcome',desc:'Hello, React!!'},
@@ -90,9 +90,28 @@ class App extends Component{
           data={this.state.contents}>           
         </TOC>
         <Control onChangeMode={function(_mode){
-          this.setState({
-            mode:_mode
-          });
+          if(_mode === 'delete'){
+            if(window.confirm('really?')){
+              var _content = Array.from(this.state.contents);
+              var i = 0;
+              while(i<_content.length){
+                if(_content[i].id === this.state.selected_content_id){
+                  _content.splice(i,1); //i번째를 기준으로 1개삭제
+                  break;
+                }
+                i=i+1;
+              }
+              this.setState({
+                mode:'welcome',
+                contents:_content
+              });
+            }
+          }else{
+            this.setState({
+              mode:_mode
+            });
+          }
+         
         }.bind(this)}></Control>
         {_article}
       </div>
