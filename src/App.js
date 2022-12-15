@@ -55,23 +55,29 @@ class App extends Component{
           {id:this.max_content_id, title:_title, desc:_desc}
         );//원본데이터를 놔두고 복사본을 만듬
         this.setState({
-          contents:_contents
-        });
+          contents:_contents,
+          mode:'read',
+          selected_content_id:this.max_content_id
+        });//신규생성 후 신규생성한 값을 바로 읽기, state 값을 read 로 바꾸고 추가된 id로 id 설정해주기
         console.log(_title,_desc);
       }.bind(this)}></CreateContent> 
     }else if(this.state.mode ==='update'){
       var _content=this.getReadContent();
-      _article = <UpdateContent data={_content} onSubmit={function(_title,_desc){
-        this.max_content_id=this.max_content_id+1;
-        // this.state.contents.push(
-        //   {id:this.max_content_id, title:_title, desc:_desc}
-        // );//원본데이터를 바꿈
-        var _contents = this.state.contents.concat(
-          {id:this.max_content_id, title:_title, desc:_desc}
-        );//원본데이터를 놔두고 복사본을 만듬
+      _article = <UpdateContent data={_content} onSubmit={
+        function(_id,_title,_desc){
+        var _contents = Array.from(this.state.contents);//복제해서 새로운 배열을 만듬.
+        var i = 0;
+        while(i<_contents.length){
+          if(_contents[i].id === _id){
+            _contents[i] = {id:_id, title:_title, desc:_desc};
+            break
+          }
+          i=i+1;
+        }
         this.setState({
-          contents:_contents
-        });
+          contents:_contents,
+          mode:'read'
+        });//수정하고 state를 읽기로 변경해주기
         console.log(_title,_desc);
       }.bind(this)}></UpdateContent>
     } 

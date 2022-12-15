@@ -5,6 +5,7 @@ class UpdateContent extends Component {
   constructor(props){
     super(props);
     this.state={
+      id:this.props.data.id,
       title:this.props.data.title,
       desc:this.props.data.desc
     }
@@ -26,10 +27,15 @@ class UpdateContent extends Component {
         <form action="/create_process" method="post" 
           onSubmit={function(e){
             e.preventDefault();
-            debugger;
-            this.props.onSubmit(e.target.title.value,e.target.desc.value);
+            this.props.onSubmit(
+              this.state.id,
+              this.state.title,
+              this.state.desc
+            );
             alert('submit!!!');
           }.bind(this)}>
+          <input type="hidden" name="id" value={this.state.id}></input>
+          {/* 식별자 설정해주기 */}
           <p>
             <input 
             type="text" 
